@@ -3,173 +3,236 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Choose Side - PharmaCare Pharmacy</title>
-  
-  <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.6.2/dist/dotlottie-wc.js" type="module"></script>
-  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-  <link rel="icon" href="assets/images/favicon.png" type="image/png">
+  <title>Choose side to view</title>
+    <link rel="icon" href="assets/images/favicon.png" type="image/png">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
-
-    * {
+    /* Reset */
+    *, *::before, *::after {
       box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Poppins', sans-serif;
     }
-
-    body, html {
-      height: 100%;
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to bottom right, #ebf4ff, #c3dafe);
+      min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      color: #fff;
-      overflow: hidden;
-      background: linear-gradient(270deg, #667eea, #764ba2, #43cea2, #185a9d);
-      background-size: 800% 800%;
-      animation: gradientBG 12s ease infinite;
+      padding: 1rem;
+      color: #4a5568; /* gray-600 */
     }
-
-    @keyframes gradientBG {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
     .container {
-      display: flex;
-      gap: 50px;
-      background: rgba(255, 255, 255, 0.08);
-      padding: 50px 60px;
-      border-radius: 30px;
-      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
-      max-width: 850px;
-      width: 95%;
-      justify-content: center;
-      backdrop-filter: blur(15px);
-      -webkit-backdrop-filter: blur(15px);
-      animation: fadeInUp 1s ease;
+      max-width: 96rem; /* ~6xl */
+      width: 100%;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 3rem;
+      color: #2d3748; /* gray-800 */
+    }
+    .header h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .header p {
+      font-size: 1.125rem;
+      max-width: 40rem;
+      margin: 0 auto;
+      color: #4a5568;
     }
 
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(40px); }
-      to { opacity: 1; transform: translateY(0); }
+    /* Grid for cards */
+    .cards {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    @media (min-width: 768px) {
+      .cards {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
 
-    .box {
-      background: linear-gradient(145deg, #ffffff22, #00000022);
-      border-radius: 25px;
-      width: 280px;
-      height: 320px;
+    /* Card styles */
+    .card {
+      background: white;
+      border-radius: 1.25rem; /* rounded-2xl */
+      box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+      border: 1px solid #f7fafc; /* gray-100 */
+      padding: 2rem;
       display: flex;
       flex-direction: column;
+      align-items: center;
+      text-align: center;
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
+      cursor: default;
+    }
+    .card:hover {
+      box-shadow: 0 20px 30px rgba(0,0,0,0.15);
+      transform: translateY(-8px);
+    }
+
+    /* Icon circle */
+    .icon-circle {
+      width: 5rem; /* 20 */
+      height: 5rem;
+      border-radius: 9999px;
+      display: flex;
       justify-content: center;
       align-items: center;
-      cursor: pointer;
-      box-shadow:
-        8px 8px 18px rgba(0,0,0,0.4),
-        -8px -8px 18px rgba(255,255,255,0.1);
-      transition: all 0.4s ease;
-      position: relative;
-      overflow: hidden;
-      text-align: center;
+      margin-bottom: 1.5rem;
+      flex-shrink: 0;
+    }
+    .icon-blue {
+      background-color: #bfdbfe; /* blue-100 */
+      color: #2563eb; /* blue-600 */
+    }
+    .icon-purple {
+      background-color: #ddd6fe; /* purple-100 */
+      color: #7c3aed; /* purple-600 */
     }
 
-    .box:hover {
-      transform: translateY(-15px) scale(1.05);
-      background: linear-gradient(145deg, #ffffff33, #00000033);
-      box-shadow:
-        0 15px 30px rgba(0,0,0,0.6),
-        0 0 20px rgba(255,255,255,0.2);
+    /* Icon SVG size */
+    svg {
+      width: 2.5rem; /* 10 */
+      height: 2.5rem;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
     }
 
-    lottie-player,
-    dotlottie-wc {
-      width: 120px;
-      height: 120px;
-      margin-bottom: 10px;
-    }
-
-    .box h2 {
-      font-size: 2rem;
+    /* Card heading */
+    .card h2 {
+      font-size: 1.5rem;
       font-weight: 600;
-      margin-bottom: 10px;
+      margin-bottom: 1rem;
+      color: #2d3748; /* gray-800 */
     }
 
-    .box p {
+    /* Card paragraph */
+    .card p {
       font-size: 1rem;
-      max-width: 220px;
       line-height: 1.5;
-      color: #e0e0ffcc;
+      margin-bottom: 1.5rem;
+      color: #4a5568; /* gray-600 */
+      max-width: 18rem;
     }
 
-    /* Responsive */
-    @media (max-width: 650px) {
-      .container {
-        flex-direction: column;
-        padding: 40px 30px;
-        gap: 30px;
-      }
-      .box {
-        width: 90vw;
-        height: 260px;
-      }
-      lottie-player, dotlottie-wc { width: 90px; height: 90px; }
-      .box h2 { font-size: 1.6rem; }
+    /* Buttons */
+    .btn {
+      width: 100%;
+      padding: 0.75rem 0;
+      border-radius: 0.5rem;
+      font-weight: 500;
+      font-size: 1rem;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+      color: white;
+      user-select: none;
+    }
+    .btn-blue {
+      background-color: #2563eb; /* blue-600 */
+    }
+    .btn-blue:hover {
+      background-color: #1d4ed8; /* blue-700 */
+    }
+    .btn-purple {
+      background-color: #7c3aed; /* purple-600 */
+    }
+    .btn-purple:hover {
+      background-color: #6b21a8; /* purple-700 */
+    }
+
+    /* Footer */
+    .footer {
+      margin-top: 3rem;
+      text-align: center;
+      font-size: 0.875rem;
+      color: #a0aec0; /* gray-400 */
     }
   </style>
 </head>
 <body>
-  <div class="container" role="main" aria-label="Choose Client or Admin Side">
-    <div class="box" id="clientBox" tabindex="0" role="button" aria-label="Go to Client Side">
-      <lottie-player 
-        src="https://assets4.lottiefiles.com/packages/lf20_puciaact.json"
-        background="transparent"
-        speed="1"
-        style="width: 120px; height: 120px;"
-        loop
-        autoplay>
-      </lottie-player>
-      <h2>Client Side</h2>
-      <p>Browse products and place orders easily.</p>
-    </div>
-    
-    <!-- Admin Box (dotlottie-wc) -->
-    <div class="box" id="adminBox" tabindex="0" role="button" aria-label="Go to Admin Side">
-      <dotlottie-wc 
-        src="https://lottie.host/361a8e58-7e8f-400e-a923-47558f1fda5f/CikRepSlJl.json" 
-        speed="1" 
-        autoplay 
-        loop>
-      </dotlottie-wc>
-      <h2>Admin Side</h2>
-      <p>Manage inventory, orders, and employee tasks.</p>
-    </div>
-    
+  <div class="container" role="main" aria-label="Choose which one to view">
+    <header class="header">
+      <h1>Choose which one to view</h1>
+      <p>2 websites, first one is a E-commerce website and second one is management website</p>
+    </header>
+
+    <section class="cards">
+      <!-- Client Side Card -->
+      <article class="card" tabindex="0" aria-label="Client view">
+        <div class="icon-circle icon-blue" aria-hidden="true">
+          <!-- Users icon SVG from lucide -->
+          <svg xmlns="http://www.w3.org/2000/svg" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M17 21v-2a4 4 0 0 0-3-3.87" />
+            <path d="M7 21v-2a4 4 0 0 1 3-3.87" />
+            <circle cx="9" cy="7" r="4" />
+            <circle cx="17" cy="7" r="4" />
+          </svg>
+        </div>
+        <h2>Client website</h2>
+        <p>
+          Access Browse products and place orders easily.
+        </p>
+        <button class="btn btn-blue" type="button" id="clientBtn">View</button>
+      </article>
+
+      <!-- Admin Side Card -->
+      <article class="card" tabindex="0" aria-label="Admin view">
+        <div class="icon-circle icon-purple" aria-hidden="true">
+          <!-- Settings icon SVG from lucide -->
+          <svg xmlns="http://www.w3.org/2000/svg" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <circle cx="12" cy="12" r="3" />
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33h.09a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51h.09a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82v.09a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
+          </svg>
+        </div>
+        <h2>Management websit</h2>
+        <p>
+          Manage inventory, orders, and employee tasks.
+        </p>
+        <button class="btn btn-purple" type="button" id="adminBtn">View</button>
+      </article>
+    </section>
+
+    <footer class="footer" aria-label="Developer">
+      <p>Dev. Youssef Mostaf Mohamed <a href="https://www.linkedin.com/in/youssef-mostafa-elkade" style="color:#718096; text-decoration: underline;" target="_blank">(Youssef Elkade)</a></p>
+    </footer>
   </div>
 
   <script>
-    const clientBox = document.getElementById('clientBox');
-    const adminBox = document.getElementById('adminBox');
+    // Redirect URLs
+    const clientUrl = 'https://joe-elkade.github.io/PharmaCare-Pharmacy/client';
+    const adminUrl = 'https://joe-elkade.github.io/PharmaCare-Pharmacy/admin';
 
-    clientBox.addEventListener('click', () => {
-      window.location.href = 'https://joe-elkade.github.io/PharmaCare-Pharmacy/client/';
+    document.getElementById('clientBtn').addEventListener('click', () => {
+      window.location.href = clientUrl;
     });
 
-    adminBox.addEventListener('click', () => {
-      window.location.href = 'https://joe-elkade.github.io/PharmaCare-Pharmacy/admin/';
+    document.getElementById('adminBtn').addEventListener('click', () => {
+      window.location.href = adminUrl;
     });
 
-    [clientBox, adminBox].forEach(box => {
-      box.addEventListener('keydown', (e) => {
+    // Optional: Make entire card clickable (like button)
+    document.querySelectorAll('.card').forEach(card => {
+      card.addEventListener('click', e => {
+        // Prevent double trigger if button clicked
+        if (e.target.tagName.toLowerCase() === 'button') return;
+        const btn = card.querySelector('button');
+        if (btn) btn.click();
+      });
+      // Keyboard accessibility: Enter or Space triggers click
+      card.addEventListener('keydown', e => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
-          box.click();
+          const btn = card.querySelector('button');
+          if (btn) btn.click();
         }
       });
     });
   </script>
 </body>
 </html>
-
-
