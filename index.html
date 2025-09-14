@@ -1,137 +1,173 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Welcome to Our Pharmacy</title>
-        <link rel="stylesheet" href="css/styles.css" />
-        <link rel="stylesheet" href="css/home-styles.css" />
-    </head>
-    <body>
-        <header>
-            <nav class="navbar">
-                <div class="logo">
-                    <h1>PharmaCare</h1>
-                </div>
-                <ul class="nav-links">
-                    <li><a href="index.html" class="active">Home</a></li>
-                    <li><a href="products.html">Products</a></li>
-                    <li><a href="chatbot.html">Chat Support</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="checkout.html" class="cart-btn">Cart</a></li>
-                </ul>
-            </nav>
-        </header>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Choose Side - Pharmacy System</title>
+  
+  <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.6.2/dist/dotlottie-wc.js" type="module"></script>
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  <link rel="icon" href="assets/images/favicon.png" type="image/png">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
-        <main>
-            <section class="hero">
-                <div class="hero-content">
-                    <h2>Your Health, Our Priority</h2>
-                    <p>
-                        Quality medicines and healthcare products delivered to
-                        your doorstep
-                    </p>
-                    <a href="products.html" class="cta-button"
-                        >Browse Products</a
-                    >
-                </div>
-            </section>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+    }
 
-            <section class="features">
-                <div class="feature-card">
-                    <h3>24/7 Support</h3>
-                    <p>Our team is always here to help</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Fast Delivery</h3>
-                    <p>Quick and reliable delivery service</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Secure Payments</h3>
-                    <p>Safe and encrypted transactions</p>
-                </div>
-            </section>
+    body, html {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      overflow: hidden;
+      background: linear-gradient(270deg, #667eea, #764ba2, #43cea2, #185a9d);
+      background-size: 800% 800%;
+      animation: gradientBG 12s ease infinite;
+    }
 
-            <section class="featured-products">
-                <h2>Featured Products</h2>
-                <div class="product-grid">
-                    <div class="product-card">
-                        <img
-                            src="assets/images/pain-relief.jpg"
-                            alt="Pain Relief Tablets"
-                        />
-                        <h3>Pain Relief Tablets</h3>
-                        <p>Fast-acting pain relief medication</p>
-                        <span class="price">$12.99</span>
-                        <button
-                            style="margin-top: auto"
-                            onclick="addToCart('Pain Relief Tablets', 12.99)"
-                        >
-                            Add to Cart
-                        </button>
-                    </div>
-                    <div class="product-card">
-                        <img
-                            src="assets/images/vitamin-c.jpg"
-                            alt="Vitamin C Supplements"
-                        />
-                        <h3>Vitamin C Supplements</h3>
-                        <p>Immune system support</p>
-                        <span class="price">$15.99</span>
-                        <button
-                            style="margin-top: auto"
-                            onclick="addToCart('Vitamin C Supplements', 15.99)"
-                        >
-                            Add to Cart
-                        </button>
-                    </div>
-                    <div class="product-card">
-                        <img
-                            src="assets/images/first-aid.jpg"
-                            alt="First Aid Kit"
-                        />
-                        <h3>First Aid Kit</h3>
-                        <p>Complete emergency care kit</p>
-                        <span class="price">$29.99</span>
-                        <button
-                            style="margin-top: auto"
-                            onclick="addToCart('First Aid Kit', 29.99)"
-                        >
-                            Add to Cart
-                        </button>
-                    </div>
-                </div>
-            </section>
-        </main>
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
 
-        <footer>
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>About Us</h3>
-                    <p>Your trusted pharmacy for all healthcare needs</p>
-                </div>
-                <div class="footer-section">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="products.html">Products</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                        <li><a href="chatbot.html">Chat Support</a></li>
-                        <li>
-                            <a href="employee/dashboard.html">Local System</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Contact Info</h3>
-                    <p>Email: info@pharmacare.com</p>
-                    <p>Phone: (555) 123-4567</p>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 PharmaCare. All rights reserved.</p>
-            </div>
-        </footer>
+    .container {
+      display: flex;
+      gap: 50px;
+      background: rgba(255, 255, 255, 0.08);
+      padding: 50px 60px;
+      border-radius: 30px;
+      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
+      max-width: 850px;
+      width: 95%;
+      justify-content: center;
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      animation: fadeInUp 1s ease;
+    }
 
-        <script src="js/main.js"></script>
-    </body>
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .box {
+      background: linear-gradient(145deg, #ffffff22, #00000022);
+      border-radius: 25px;
+      width: 280px;
+      height: 320px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      box-shadow:
+        8px 8px 18px rgba(0,0,0,0.4),
+        -8px -8px 18px rgba(255,255,255,0.1);
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .box:hover {
+      transform: translateY(-15px) scale(1.05);
+      background: linear-gradient(145deg, #ffffff33, #00000033);
+      box-shadow:
+        0 15px 30px rgba(0,0,0,0.6),
+        0 0 20px rgba(255,255,255,0.2);
+    }
+
+    lottie-player,
+    dotlottie-wc {
+      width: 120px;
+      height: 120px;
+      margin-bottom: 10px;
+    }
+
+    .box h2 {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .box p {
+      font-size: 1rem;
+      max-width: 220px;
+      line-height: 1.5;
+      color: #e0e0ffcc;
+    }
+
+    /* Responsive */
+    @media (max-width: 650px) {
+      .container {
+        flex-direction: column;
+        padding: 40px 30px;
+        gap: 30px;
+      }
+      .box {
+        width: 90vw;
+        height: 260px;
+      }
+      lottie-player, dotlottie-wc { width: 90px; height: 90px; }
+      .box h2 { font-size: 1.6rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container" role="main" aria-label="Choose Client or Admin Side">
+    <div class="box" id="clientBox" tabindex="0" role="button" aria-label="Go to Client Side">
+      <lottie-player 
+        src="https://assets4.lottiefiles.com/packages/lf20_puciaact.json"
+        background="transparent"
+        speed="1"
+        style="width: 120px; height: 120px;"
+        loop
+        autoplay>
+      </lottie-player>
+      <h2>Client Side</h2>
+      <p>Browse products and place orders easily.</p>
+    </div>
+    
+    <!-- Admin Box (dotlottie-wc) -->
+    <div class="box" id="adminBox" tabindex="0" role="button" aria-label="Go to Admin Side">
+      <dotlottie-wc 
+        src="https://lottie.host/361a8e58-7e8f-400e-a923-47558f1fda5f/CikRepSlJl.json" 
+        speed="1" 
+        autoplay 
+        loop>
+      </dotlottie-wc>
+      <h2>Admin Side</h2>
+      <p>Manage inventory, orders, and employee tasks.</p>
+    </div>
+    
+  </div>
+
+  <script>
+    const clientBox = document.getElementById('clientBox');
+    const adminBox = document.getElementById('adminBox');
+
+    clientBox.addEventListener('click', () => {
+      window.location.href = 'https://joe-elkade.github.io/Pharmacy-System-client/client/';
+    });
+
+    adminBox.addEventListener('click', () => {
+      window.location.href = 'https://joe-elkade.github.io/Pharmacy-System-client/admin/';
+    });
+
+    [clientBox, adminBox].forEach(box => {
+      box.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          box.click();
+        }
+      });
+    });
+  </script>
+</body>
 </html>
